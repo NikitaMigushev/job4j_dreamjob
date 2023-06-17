@@ -7,7 +7,7 @@ import ru.job4j.dreamjob.repository.MemoryCandidateRepository;
 import java.util.Collection;
 import java.util.Optional;
 
-public class SimpleCandidateService implements CandidateService{
+public class SimpleCandidateService implements CandidateService {
     private static final SimpleCandidateService INSTANCE = new SimpleCandidateService();
 
     private final CandidateRepository candidateRepository = MemoryCandidateRepository.getInstance();
