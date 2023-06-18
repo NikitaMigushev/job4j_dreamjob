@@ -23,7 +23,7 @@
                     <a class="nav-item nav-link active" th:href="@{/vacancies}">Вакансии</a>
                     <a class="nav-item nav-link" th:href="@{/candidates}">Кандидаты</a>
                     <a class="nav-item nav-link" th:href="@{/vacancies/create}">Создать вакансию</a>
-                    <a class="nav-item nav-link" th:href="@{/candidates/create}">Добавить кандидата</a>
+                    <a class="nav-item nav-link" th:href="@{/candidates/create}">Создать резюме</a>
                 </div>
             </div>
         </div>
@@ -33,6 +33,7 @@
             <table class="table">
                 <thead>
                 <tr>
+                    <th><i class="bi bi-square"></i></th>
                     <th scope="col">#</th>
                     <th scope="col">Название</th>
                     <th scope="col">Дата создания</th>
@@ -40,6 +41,14 @@
                 </thead>
                 <tbody>
                 <tr th:each="vacancy: ${vacancies}">
+                    <td>
+              <span th:if="${vacancy.visible}">
+                <i class="bi bi-check-square"></i>
+              </span>
+                        <span th:if="${!vacancy.visible}">
+                  <i class="bi bi-square"></i>
+              </span>
+                    </td>
                     <td th:text="${vacancy.id}"/>
                     <td><a th:text="${vacancy.title}" th:href="@{/vacancies/{vacancyId}(vacancyId=${vacancy.id})}"></a></td>
                     <td th:text="${vacancy.creationDate}"/>

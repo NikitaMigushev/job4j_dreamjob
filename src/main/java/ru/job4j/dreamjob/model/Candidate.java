@@ -18,7 +18,7 @@ public class Candidate {
         this.description = description;
         this.creationDate = creationDate;
     }
-
+    
     public int getId() {
         return id;
     }
