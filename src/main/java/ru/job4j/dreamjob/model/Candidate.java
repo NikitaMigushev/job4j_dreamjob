@@ -1,4 +1,5 @@
 package ru.job4j.dreamjob.model;
+
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -6,10 +7,9 @@ public class Candidate {
     private int id;
     private String name;
     private String description;
-    private LocalDateTime creationDate;
+    private LocalDateTime creationDate = LocalDateTime.now();
 
     public Candidate() {
-        this.creationDate = LocalDateTime.now();
     }
 
     public Candidate(int id, String name, String description, LocalDateTime creationDate) {
@@ -70,11 +70,6 @@ public class Candidate {
 
     @Override
     public String toString() {
-        return "Candidate{"
-                + "id=" + id
-                + ", name='" + name + '\''
-                + ", description='" + description + '\''
-                + ", creationDate=" + creationDate
-                + '}';
+        return "Candidate{" + "id=" + id + ", name='" + name + '\'' + ", description='" + description + '\'' + ", creationDate=" + creationDate + '}';
     }
 }
