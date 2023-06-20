@@ -44,5 +44,4 @@ public class Sql2oFileRepository implements FileRepository {
             return affectedRows > 0;
         }
     }
-
 }

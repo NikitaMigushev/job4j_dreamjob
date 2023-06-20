@@ -1,9 +1,9 @@
 package ru.job4j.dreamjob.repository;
 
 
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.job4j.dreamjob.configuration.DatasourceConfiguration;
 import ru.job4j.dreamjob.model.File;
@@ -42,14 +42,17 @@ public class Sql2oVacancyRepositoryTest {
 
         sql2oVacancyRepository = new Sql2oVacancyRepository(sql2o);
         sql2oFileRepository = new Sql2oFileRepository(sql2o);
+    }
 
-        /*нужно сохранить хотя бы один файл, т.к. Vacancy от него зависит*/
-        file = new File("test", "test");
+
+    @BeforeEach
+    public void createFile() {
+        file = new File("test", "test2");
         sql2oFileRepository.save(file);
     }
 
-    @AfterAll
-    public static void deleteFile() {
+    @AfterEach
+    public void deleteFile() {
         sql2oFileRepository.deleteById(file.getId());
     }
 
