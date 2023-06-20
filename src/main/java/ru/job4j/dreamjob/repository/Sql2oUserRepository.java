@@ -4,7 +4,6 @@ import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import org.sql2o.Sql2oException;
-import ru.job4j.dreamjob.model.Candidate;
 import ru.job4j.dreamjob.model.User;
 
 import java.util.Collection;
@@ -80,7 +79,7 @@ public class Sql2oUserRepository implements UserRepository {
     public Collection<User> findAll() {
         try (var connection = sql2o.open()) {
             var query = connection.createQuery("SELECT * FROM USERS");
-            return query.setColumnMappings(Candidate.COLUMN_MAPPING).executeAndFetch(User.class);
+            return query.setColumnMappings(User.COLUMN_MAPPING).executeAndFetch(User.class);
         }
     }
 
@@ -90,6 +89,7 @@ public class Sql2oUserRepository implements UserRepository {
             User user = conn.createQuery("SELECT * FROM users WHERE email = :email AND password = :password")
                     .addParameter("email", email)
                     .addParameter("password", password)
+                    .setColumnMappings(User.COLUMN_MAPPING)
                     .executeAndFetchFirst(User.class);
             return Optional.ofNullable(user);
         } catch (Exception e) {

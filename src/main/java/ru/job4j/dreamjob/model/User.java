@@ -10,8 +10,9 @@ public class User {
             "email", "email",
             "name", "name",
             "password", "password",
-            "creation_date", "creationDate"
+            "creation_date", "creationDate" // Update this line
     );
+
     private int id;
     private String email;
     private String name;
