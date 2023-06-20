@@ -10,7 +10,7 @@ public class User {
             "email", "email",
             "name", "name",
             "password", "password",
-            "creation_date", "creationDate" // Update this line
+            "creation_date", "creationDate"
     );
 
     private int id;
