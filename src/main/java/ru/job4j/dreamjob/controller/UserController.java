@@ -50,16 +50,12 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public ModelAndView register(@RequestParam("email") String email,
-                                 @RequestParam("name") String name,
-                                 @RequestParam("password") String password) {
-        User user = new User();
-        user.setEmail(email);
-        user.setName(name);
-        user.setPassword(password);
-        userService.save(user);
-
-        ModelAndView modelAndView = new ModelAndView("redirect:/users/register");
-        return modelAndView;
+    public String register(Model model, @ModelAttribute User user) {
+        var savedUser = userService.save(user);
+        if (savedUser.isEmpty()) {
+            model.addAttribute("message", "Пользователь с такой почтой уже существует");
+            return "errors/404";
+        }
+        return "redirect:/vacancies";
     }
 }

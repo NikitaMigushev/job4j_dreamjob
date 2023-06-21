@@ -21,7 +21,11 @@ public class Sql2oUserRepository implements UserRepository {
     @Override
     public Optional<User> save(User user) {
         try (Connection conn = sql2o.open()) {
-            int generatedId = (int) conn.createQuery("INSERT INTO users (email, name, password, creation_date) VALUES (:email, :name, :password, :creationDate)")
+            int generatedId = (int) conn.createQuery(
+                            "INSERT INTO users "
+                                    + "(email, name, password, creation_date)"
+                                    + " VALUES (:email, :name, :password, :creationDate)"
+                    )
                     .addParameter("email", user.getEmail())
                     .addParameter("name", user.getName())
                     .addParameter("password", user.getPassword())
@@ -34,8 +38,8 @@ public class Sql2oUserRepository implements UserRepository {
             throw e;
         } catch (Exception e) {
             e.printStackTrace();
-            return Optional.empty();
         }
+        return Optional.empty();
     }
 
     @Override
