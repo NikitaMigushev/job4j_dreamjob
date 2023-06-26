@@ -3,17 +3,16 @@ package ru.job4j.dreamjob.repository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.sql2o.Sql2oException;
 import ru.job4j.dreamjob.configuration.DatasourceConfiguration;
 import ru.job4j.dreamjob.model.File;
 import ru.job4j.dreamjob.model.User;
 
 import java.time.temporal.ChronoUnit;
+import java.util.Optional;
 import java.util.Properties;
 
 import static java.time.LocalDateTime.now;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 class Sql2oUserRepositoryTest {
     private static Sql2oUserRepository sql2oUserRepository;
@@ -56,8 +55,7 @@ class Sql2oUserRepositoryTest {
     public void whenSaveSameEmailThenGetError() {
         var creationDate = now().truncatedTo(ChronoUnit.MINUTES);
         var userA = sql2oUserRepository.save(new User(1, "test3@test.ru", "test", "123", creationDate));
-        assertThatThrownBy(() -> {
-            sql2oUserRepository.save(new User(1, "test3@test.ru", "test2", "1234", creationDate));
-        }).isInstanceOf(Sql2oException.class);
+        assertThat(sql2oUserRepository.save(new User(1, "test3@test.ru", "test2", "1234", creationDate)))
+                .isEqualTo(Optional.empty());
     }
 }
