@@ -59,5 +59,4 @@ public class File {
     public int hashCode() {
         return Objects.hash(id, path);
     }
-
 }

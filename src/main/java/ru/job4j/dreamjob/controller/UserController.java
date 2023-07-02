@@ -45,7 +45,7 @@ public class UserController {
 
     @GetMapping("/register")
     public ModelAndView getRegistrationPage() {
-        ModelAndView modelAndView = new ModelAndView("registration");
+        ModelAndView modelAndView = new ModelAndView("register");
         return modelAndView;
     }
 

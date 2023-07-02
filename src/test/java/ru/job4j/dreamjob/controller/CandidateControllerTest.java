@@ -80,7 +80,6 @@ class CandidateControllerTest {
         assertThat(view).isEqualTo("redirect:/candidates");
         assertThat(actualCandidate).isEqualTo(candidate);
         assertThat(fileDto).usingRecursiveComparison().isEqualTo(actualFileDto);
-
     }
 
 

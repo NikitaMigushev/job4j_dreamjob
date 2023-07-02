@@ -86,7 +86,6 @@ public class VacancyControllerTest {
 
     }
 
-
     @Test
     public void whenSomeExceptionThrownThenGetErrorPageWithMessage() {
         var expectedException = new RuntimeException("Failed to write file");

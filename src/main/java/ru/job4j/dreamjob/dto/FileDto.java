@@ -26,5 +26,4 @@ public class FileDto {
     public void setContent(byte[] content) {
         this.content = content;
     }
-
 }
